@@ -8,7 +8,8 @@ public class GmailSignInTest {
 	public void gmailLoginShouldBeSuccessful(){
 //		Go to Gmail wbsite
 		WebDriver chromeDriver = new org.openqa.selenium.chrome.ChromeDriver();
-		//chromeDriver.
+		chromeDriver.get(null);
+		
 //		Fill in username
 //		Fill in password
 //		click sign in
