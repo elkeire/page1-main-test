@@ -10,10 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import junit.framework.Assert;
 
 public class GmailSignInTest {
+//		Go to Gmail wbsite
+	WebDriver driverc = new org.openqa.selenium.chrome.ChromeDriver();
+	
+	
 	@Test
 	public void gmailLoginShouldBeSuccessful(){
-//		Go to Gmail wbsite
-		WebDriver driverc = new org.openqa.selenium.chrome.ChromeDriver();
 		driverc.get("http://gmail.com");
 //		Fill in username
 		WebElement usrname = driverc.findElement(By.id(""));
@@ -43,12 +45,34 @@ public class GmailSignInTest {
 	public void gmailSendAndReceiveEmailTest()
 	{
 		//1. Click signin
+		driverc.get("http://gmail.com");
+//		Fill in username
+		WebElement usrname = driverc.findElement(By.id(""));
+		usrname.clear();
+		usrname.sendKeys("");
+//		Fill in password
+		WebElement psswd = driverc.findElement(By.id(""));
+		psswd.clear();
+		psswd.sendKeys("");
+//		click sign in
+		WebElement signIn = driverc.findElement(By.id(""));
+		signIn.click();
 		//2. Click compose
+		
 		//3. Fill in recipient
+		WebElement toTextArea = driverc.findElement(By.cssSelector());
+		toTextArea.clear();
+		toTextArea.sendKeys("");
 		//4. Fill in email body
+		WebElement bodyTextArea = driverc.findElement(By.id(""));
+		bodyTextArea.clear();
+		bodyTextArea.sendKeys("");
 		//5. Click send
-		//6. Click Senf
-		//7. Click inbox again
+		WebElement sendButton = driverc.findElement(By.cssSelector(""));
+		sendButton.click();
+		//6. Click inbox again
+		
+		
 		//8. Click email
 		//9. Verify the email subject and email body is correct
 		//10. Sign out
