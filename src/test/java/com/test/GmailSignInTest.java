@@ -1,5 +1,6 @@
 package com.test;
 
+import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -71,8 +72,9 @@ public class GmailSignInTest {
 		subjectTextArea.sendKeys(sbj);
 		//4. Fill in email body
 		WebElement bodyTextArea = driverc.findElement(By.id(""));
+		final String bodyText = "Hello testers of the world!";
 		bodyTextArea.clear();
-		bodyTextArea.sendKeys("");
+		bodyTextArea.sendKeys(bodyText);
 		//5. Click send
 		WebElement sendButton = driverc.findElement(By.cssSelector(""));
 		sendButton.click();
@@ -86,8 +88,24 @@ public class GmailSignInTest {
 		WebElement newMail = driverc.findElement(By.cssSelector(""));
 		newMail.click();
 		//9. Verify the email subject and email body is correct
+		WebElement subjectArea = driverc.findElement(By.cssSelector(""));
+		Assert.assertEquals("", sbj, subjectArea.getText());
+		WebElement bodyArea = driverc.findElement(By.cssSelector(""));
+		Assert.assertEquals("", bodyText, bodyTextArea.getText());
+		
 		//10. Sign out
+		WebElement profileButton = driverc.findElement(By.cssSelector(""));
+		profileButton.click();
+		
+		WebElement signoutLinkage = driverc.findElement(By.id(""));
+		signoutLinkage.click();
+		
+		
+		
 	}
+	
+	@After
+	public void tearDown(){driverc.quit();}
 	
 
 }
