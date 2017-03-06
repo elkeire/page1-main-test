@@ -8,6 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.test.pageobjects.EmailHomePage;
+import com.test.pageobjects.SignInPage;
+import com.test.utils.WebUtil;
+
 import junit.framework.Assert;
 
 public class GmailSignInTest {
@@ -18,18 +22,19 @@ public class GmailSignInTest {
 	
 	@Test
 	public void gmailLoginShouldBeSuccessful(){
-		driverc.get("http://gmail.com");
+		
+		
+		//SignIn first wrote this line then generated the code for the pieces
+		SignInPage signInPage = WebUtil.goToSignInPage(driverc);
+			// So driverc get page and return from a page factory initialiseElements()
+			// This next bit is done by the SignInPage
 //		Fill in username
-		WebElement usrname = driverc.findElement(By.id(""));
-		usrname.clear();
-		usrname.sendKeys("");
+		signInPage.fillInUserName(driverc, "");
 //		Fill in password
-		WebElement psswd = driverc.findElement(By.id(""));
-		psswd.clear();
-		psswd.sendKeys("");
+		signInPage.fillInPassword(driverc, "");
 //		click sign in
-		WebElement signIn = driverc.findElement(By.id(""));
-		signIn.click();
+		EmailHomePage emailHomePage = signInPage.clickSignIn(driverc);
+		
 //		verify iser did sign in
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("")));
 		Assert.assertTrue("", driverc.findElements(By.cssSelector("")).size()>0);
